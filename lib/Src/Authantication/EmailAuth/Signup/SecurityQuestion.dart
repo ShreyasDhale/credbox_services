@@ -1,26 +1,21 @@
-import 'package:credbox/Src/Authantication/EmailAuth/Signup/SetPassword.dart';
+import 'package:credbox/Src/Arguments/ArgumentsClass.dart';
+import 'package:credbox/Src/Router/appRoutes.dart';
 import 'package:credbox/Src/Widgets/DropDown.dart';
 import 'package:credbox/Src/Widgets/FormWidgets.dart';
 import 'package:credbox/Theme/Themes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SecurityQuestion extends StatefulWidget {
-  final String fname;
-  final String mname;
-  final String lname;
-  const SecurityQuestion(
-      {super.key,
-      required this.fname,
-      required this.mname,
-      required this.lname});
+  final SecurityQuestionArguments args;
+  const SecurityQuestion({super.key, required this.args});
 
   @override
   State<SecurityQuestion> createState() => _SecurityQuestionState();
 }
 
 class _SecurityQuestionState extends State<SecurityQuestion> {
-  String selectedValue = "Select Security Question";
+  String selectedValue = "What is Your School Name?";
+  var answerController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,36 +45,91 @@ class _SecurityQuestionState extends State<SecurityQuestion> {
               const SizedBox(
                 height: 20,
               ),
+              Text(
+                "Be carefull because these questions will be asked when you forgot your password",
+                style: Themes.style.copyWith(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 40,
+              ),
               CustomDropdownButton(
-                  items: const [
-                    "Select Security Question",
-                    "What is Your School Name?",
-                    "What is your city name?"
-                  ],
-                  selectedValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = value!;
-                    });
-                  },
-                  leading: const [
-                    Icon(Icons.check),
-                    Icon(Icons.school),
-                    Icon(Icons.location_city)
-                  ]),
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.only(right: 20, left: 20),
+                    fillColor: Colors.white,
+                    labelText: "Select Security Question",
+                    hintStyle: Themes.style.copyWith(color: Colors.grey),
+                    filled: true,
+                    border: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)))),
+                items: const [
+                  "What is Your School Name?",
+                  "What is your city name?"
+                ],
+                selectedValue: selectedValue,
+                onChanged: (value) {
+                  setState(() {
+                    selectedValue = value!;
+                  });
+                },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              customTextfield(
+                  controller: answerController,
+                  hint: "Delhi Public School (as your answer)"),
+              const SizedBox(
+                height: 20,
+              ),
               customButton(
                   onTap: () {
-                    Get.to(SetPassword(
-                        fname: widget.fname,
-                        mname: widget.mname,
-                        lname: widget.lname,
-                        questions: const ["question 1", "question 2"],
-                        answers: const ["ans 1", "ans 2"]));
+                    Navigator.pushNamed(context, AppRoute.signupPage3,
+                        arguments: SetPasswordArguments(
+                          mname: widget.args.mname,
+                          lname: widget.args.lName,
+                          fname: widget.args.fName,
+                          question: selectedValue,
+                          answer: answerController.text.trim(),
+                        ));
                   },
                   borderRadius: 10,
                   bgColor: Colors.black,
                   height: 40,
-                  text: "Next")
+                  text: "Next"),
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Already on Credbox?  ",
+                    style:
+                        Themes.style.copyWith(fontSize: 18, color: Colors.grey),
+                    textAlign: TextAlign.center,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, AppRoute.loginPage, (context) => false);
+                    },
+                    child: Text(
+                      "Signin",
+                      style: Themes.style.copyWith(
+                          fontSize: 18,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

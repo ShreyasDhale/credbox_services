@@ -2,7 +2,6 @@ import 'package:credbox/Src/Router/appRoutes.dart';
 import 'package:credbox/Src/Widgets/FormWidgets.dart';
 import 'package:credbox/Theme/Themes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
@@ -87,6 +86,23 @@ class _LoginPageState extends State<LoginPage> {
                           : const Icon(Icons.visibility_off)),
                   borderColor: Colors.grey.shade100),
               const SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoute.forgotPassPage);
+                    },
+                    child: Text(
+                      "Forgot password? ",
+                      style: Themes.style
+                          .copyWith(fontSize: 16, color: Colors.green),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
                 height: 20,
               ),
               customButton(
@@ -95,31 +111,16 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: 10,
                   height: 40,
                   onTap: () {
-                    Get.toNamed(AppRoute.homePage);
+                    Navigator.pushNamed(context, AppRoute.homePage);
                   }),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  Text(
-                    "Not a member?",
-                    style: Themes.style.copyWith(fontSize: 16),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Get.toNamed(AppRoute.signupPage1);
-                    },
-                    child: Text(
-                      " Sign up",
-                      style: Themes.style.copyWith(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
-                  ),
-                ],
-              ),
+              customButton(
+                  text: "Sign up",
+                  bgColor: Colors.green,
+                  borderRadius: 10,
+                  height: 40,
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoute.signupPage1);
+                  }),
               const SizedBox(
                 height: 30,
               ),

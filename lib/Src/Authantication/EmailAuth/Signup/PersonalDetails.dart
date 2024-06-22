@@ -1,8 +1,8 @@
-import 'package:credbox/Src/Authantication/EmailAuth/Signup/SecurityQuestion.dart';
+import 'package:credbox/Src/Arguments/ArgumentsClass.dart';
+import 'package:credbox/Src/Router/appRoutes.dart';
 import 'package:credbox/Src/Widgets/FormWidgets.dart';
 import 'package:credbox/Theme/Themes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class PersonalDetails extends StatelessWidget {
@@ -57,7 +57,7 @@ class PersonalDetails extends StatelessWidget {
                 height: 10,
               ),
               customTextfield(
-                  controller: fnameController,
+                  controller: mnameController,
                   hint: "Your middle name",
                   keepBorder: true,
                   borderColor: Colors.grey.shade100),
@@ -65,7 +65,7 @@ class PersonalDetails extends StatelessWidget {
                 height: 10,
               ),
               customTextfield(
-                  controller: fnameController,
+                  controller: lnameController,
                   hint: "Your last name",
                   keepBorder: true,
                   borderColor: Colors.grey.shade100),
@@ -74,13 +74,43 @@ class PersonalDetails extends StatelessWidget {
               ),
               customButton(
                   onTap: () {
-                    Get.to(const SecurityQuestion(
-                        fname: "fname", mname: "mname", lname: "lname"));
+                    Navigator.pushNamed(context, AppRoute.signupPage2,
+                        arguments: SecurityQuestionArguments(
+                            fName: fnameController.text.trim(),
+                            mname: mnameController.text.trim(),
+                            lName: lnameController.text.trim()));
                   },
                   text: "Next",
                   bgColor: Colors.black,
                   borderRadius: 10,
                   height: 40),
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Already on Credbox?  ",
+                    style:
+                        Themes.style.copyWith(fontSize: 18, color: Colors.grey),
+                    textAlign: TextAlign.center,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, AppRoute.loginPage, (context) => false);
+                    },
+                    child: Text(
+                      "Signin",
+                      style: Themes.style.copyWith(
+                          fontSize: 18,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

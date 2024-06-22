@@ -3,7 +3,6 @@ import 'package:credbox/Src/Router/appRoutes.dart';
 import 'package:credbox/Theme/Themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -125,7 +124,8 @@ class _MainScreenState extends State<MainScreen> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Get.offAllNamed(AppRoute.loginPage);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, AppRoute.loginPage, (context) => false);
                       },
                       child: Card(
                         elevation: 4,

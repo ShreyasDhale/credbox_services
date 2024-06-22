@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class CustomDropdownButton<T> extends StatefulWidget {
   final List<T> items;
-  final List<Icon> leading;
   final T selectedValue;
   final Function(T?) onChanged;
   final InputDecoration? decoration;
@@ -12,10 +11,8 @@ class CustomDropdownButton<T> extends StatefulWidget {
     required this.items,
     required this.selectedValue,
     required this.onChanged,
-    required this.leading,
     this.decoration,
-  }) : assert(items.length == leading.length,
-            'Items and leading must have the same length');
+  });
 
   @override
   CustomDropdownButtonState<T> createState() => CustomDropdownButtonState<T>();
@@ -43,18 +40,12 @@ class CustomDropdownButtonState<T> extends State<CustomDropdownButton<T>> {
             });
             widget.onChanged(newValue);
           },
-          items: List<DropdownMenuItem<T>>.generate(
-            widget.items.length,
-            (index) {
-              return DropdownMenuItem<T>(
-                value: widget.items[index],
-                child: ListTile(
-                  leading: widget.leading[index],
-                  title: Text(widget.items[index].toString()),
-                ),
-              );
-            },
-          ),
+          items: widget.items.map<DropdownMenuItem<T>>((T value) {
+            return DropdownMenuItem<T>(
+              value: value,
+              child: Text(value.toString()),
+            );
+          }).toList(),
         ),
       ),
     );

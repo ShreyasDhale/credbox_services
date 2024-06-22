@@ -1,7 +1,6 @@
 import 'package:credbox/Src/Router/appRoutes.dart';
 import 'package:credbox/Theme/Themes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       title: 'Credbox Services',
       theme: Themes.theme,
-      initialRoute: AppRoute.loginPage,
+      onGenerateRoute: AppRoute.generateRoute,
       debugShowCheckedModeBanner: false,
-      routes: AppRoute.routes,
+      initialRoute: AppRoute.homePage,
     );
   }
 }
