@@ -1,4 +1,4 @@
-import 'package:credbox/Src/Screens/MainScreen.dart';
+import 'package:credbox/Src/Router/appRoutes.dart';
 import 'package:credbox/Theme/Themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,11 +15,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Credbox Services',
       theme: Themes.theme,
-      initialRoute: "/home",
-      getPages: [
-        GetPage(name: '/home', page: () => const MainScreen()),
-        // GetPage(name: '/login', page: () => LoginPage()),
-      ],
+      initialRoute: AppRoute.loginPage,
+      debugShowCheckedModeBanner: false,
+      routes: AppRoute.routes,
     );
   }
 }
