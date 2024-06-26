@@ -1,5 +1,6 @@
 import 'package:credbox/Src/Arguments/ArgumentsClass.dart';
-import 'package:credbox/Src/Authantication/EmailAuth/ForgotPassword.dart';
+import 'package:credbox/Src/Authantication/EmailAuth/ForgotPassword/ForgotPassword.dart';
+import 'package:credbox/Src/Authantication/EmailAuth/ForgotPassword/ResetPassword.dart';
 import 'package:credbox/Src/Authantication/EmailAuth/Login.dart';
 import 'package:credbox/Src/Authantication/EmailAuth/Signup/PersonalDetails.dart';
 import 'package:credbox/Src/Authantication/EmailAuth/Signup/SecurityQuestion.dart';
@@ -10,7 +11,8 @@ import 'package:flutter/material.dart';
 class AppRoute {
   static const String homePage = "/home";
   static const String loginPage = "/login";
-  static const String forgotPassPage = "/resetpass";
+  static const String forgotPassPage = "/resetpass1";
+  static const String resetPassPage = "/resetpass2";
   static const String signupPage1 = "/personalDetails";
   static const String signupPage2 = "/securityQuestion";
   static const String signupPage3 = "/setPassword";
@@ -25,7 +27,11 @@ class AppRoute {
         );
       case forgotPassPage:
         return MaterialPageRoute(
-          builder: (context) => ForgotPassword(),
+          builder: (context) => const ForgotPassword(),
+        );
+      case resetPassPage:
+        return MaterialPageRoute(
+          builder: (context) => const ResetPassword(),
         );
       case signupPage1:
         return MaterialPageRoute(

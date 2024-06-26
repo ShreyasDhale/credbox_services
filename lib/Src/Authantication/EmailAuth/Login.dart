@@ -56,6 +56,7 @@ class _LoginPageState extends State<LoginPage> {
               Text(
                 "Enter your email and password to signin",
                 style: Themes.style.copyWith(fontSize: 18),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(
                 height: 10,
