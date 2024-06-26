@@ -6,6 +6,7 @@ import 'package:credbox/Src/Authantication/EmailAuth/Signup/PersonalDetails.dart
 import 'package:credbox/Src/Authantication/EmailAuth/Signup/SecurityQuestion.dart';
 import 'package:credbox/Src/Authantication/EmailAuth/Signup/SetPassword.dart';
 import 'package:credbox/Src/MainScreen/MainScreen.dart';
+import 'package:credbox/Src/Screens/Messages.dart';
 import 'package:flutter/material.dart';
 
 class AppRoute {
@@ -13,6 +14,7 @@ class AppRoute {
   static const String loginPage = "/login";
   static const String forgotPassPage = "/resetpass1";
   static const String resetPassPage = "/resetpass2";
+  static const String messagesPage = "/messages";
   static const String signupPage1 = "/personalDetails";
   static const String signupPage2 = "/securityQuestion";
   static const String signupPage3 = "/setPassword";
@@ -21,6 +23,8 @@ class AppRoute {
     switch (settings.name) {
       case homePage:
         return MaterialPageRoute(builder: (context) => const MainScreen());
+      case messagesPage:
+        return MaterialPageRoute(builder: (context) => const MessagesScreen());
       case loginPage:
         return MaterialPageRoute(
           builder: (context) => LoginPage(),

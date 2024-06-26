@@ -5,8 +5,12 @@ class BlogScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Blogs"),
+    return Scaffold(
+      body: const Center(
+        child: Text("Blogs"),
+      ),
+      floatingActionButton:
+          FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
     );
   }
 }
