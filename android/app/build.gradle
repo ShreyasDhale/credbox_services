@@ -51,6 +51,12 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+
+    configuration{
+        all {
+            exclude module:'httpclient'
+        }
+    }
 }
 
 flutter {

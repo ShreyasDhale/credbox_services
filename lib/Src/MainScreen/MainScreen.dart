@@ -28,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
           TextButton(
               onPressed: () {
                 print("Messages");
-                Navigator.pushNamed(context, AppRoute.messagesPage);
+                Navigator.pushNamed(context, AppRoute.uploadApp);
               },
               child: Image.asset("Assets/Images/conversation.png"))
         ],

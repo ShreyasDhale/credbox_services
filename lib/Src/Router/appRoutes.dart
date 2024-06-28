@@ -6,6 +6,7 @@ import 'package:credbox/Src/Authantication/EmailAuth/Signup/PersonalDetails.dart
 import 'package:credbox/Src/Authantication/EmailAuth/Signup/SecurityQuestion.dart';
 import 'package:credbox/Src/Authantication/EmailAuth/Signup/SetPassword.dart';
 import 'package:credbox/Src/MainScreen/MainScreen.dart';
+import 'package:credbox/Src/Screens/AppRelease.dart';
 import 'package:credbox/Src/Screens/Messages.dart';
 import 'package:flutter/material.dart';
 
@@ -18,9 +19,12 @@ class AppRoute {
   static const String signupPage1 = "/personalDetails";
   static const String signupPage2 = "/securityQuestion";
   static const String signupPage3 = "/setPassword";
+  static const String uploadApp = "/uploadApp";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case uploadApp:
+        return MaterialPageRoute(builder: (context) => UploadPage());
       case homePage:
         return MaterialPageRoute(builder: (context) => const MainScreen());
       case messagesPage:
